@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E0479B8C1A84DC89005C7092 /* RJStudentDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0479B8B1A84DC89005C7092 /* RJStudentDetailsController.m */; };
 		E0B61A311A84940B00F0A72C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B61A301A84940B00F0A72C /* main.m */; };
 		E0B61A341A84940B00F0A72C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B61A331A84940B00F0A72C /* AppDelegate.m */; };
 		E0B61A371A84940B00F0A72C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B61A361A84940B00F0A72C /* ViewController.m */; };
@@ -14,6 +15,11 @@
 		E0B61A3C1A84940B00F0A72C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0B61A3B1A84940B00F0A72C /* Images.xcassets */; };
 		E0B61A3F1A84940B00F0A72C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0B61A3D1A84940B00F0A72C /* LaunchScreen.xib */; };
 		E0B61A4B1A84940B00F0A72C /* Lesson37_38ExTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B61A4A1A84940B00F0A72C /* Lesson37_38ExTests.m */; };
+		E0B61A551A84942400F0A72C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0B61A541A84942400F0A72C /* MapKit.framework */; };
+		E0B61A581A849AC600F0A72C /* RJStudent.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B61A571A849AC600F0A72C /* RJStudent.m */; };
+		E0B61A5B1A84AD1800F0A72C /* RJMapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B61A5A1A84AD1800F0A72C /* RJMapAnnotation.m */; };
+		E0B61A5E1A84C2DE00F0A72C /* female.png in Resources */ = {isa = PBXBuildFile; fileRef = E0B61A5C1A84C2DE00F0A72C /* female.png */; };
+		E0B61A5F1A84C2DE00F0A72C /* male.png in Resources */ = {isa = PBXBuildFile; fileRef = E0B61A5D1A84C2DE00F0A72C /* male.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E0479B8A1A84DC89005C7092 /* RJStudentDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJStudentDetailsController.h; sourceTree = "<group>"; };
+		E0479B8B1A84DC89005C7092 /* RJStudentDetailsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJStudentDetailsController.m; sourceTree = "<group>"; };
 		E0B61A2B1A84940B00F0A72C /* Lesson37-38Ex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lesson37-38Ex.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0B61A2F1A84940B00F0A72C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0B61A301A84940B00F0A72C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -40,6 +48,13 @@
 		E0B61A441A84940B00F0A72C /* Lesson37-38ExTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Lesson37-38ExTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0B61A491A84940B00F0A72C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0B61A4A1A84940B00F0A72C /* Lesson37_38ExTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Lesson37_38ExTests.m; sourceTree = "<group>"; };
+		E0B61A541A84942400F0A72C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		E0B61A561A849AC600F0A72C /* RJStudent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJStudent.h; sourceTree = "<group>"; };
+		E0B61A571A849AC600F0A72C /* RJStudent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJStudent.m; sourceTree = "<group>"; };
+		E0B61A591A84AD1800F0A72C /* RJMapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJMapAnnotation.h; sourceTree = "<group>"; };
+		E0B61A5A1A84AD1800F0A72C /* RJMapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJMapAnnotation.m; sourceTree = "<group>"; };
+		E0B61A5C1A84C2DE00F0A72C /* female.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = female.png; path = Images/female.png; sourceTree = SOURCE_ROOT; };
+		E0B61A5D1A84C2DE00F0A72C /* male.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = male.png; path = Images/male.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0B61A551A84942400F0A72C /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +79,7 @@
 		E0B61A221A84940B00F0A72C = {
 			isa = PBXGroup;
 			children = (
+				E0B61A541A84942400F0A72C /* MapKit.framework */,
 				E0B61A2D1A84940B00F0A72C /* Lesson37-38Ex */,
 				E0B61A471A84940B00F0A72C /* Lesson37-38ExTests */,
 				E0B61A2C1A84940B00F0A72C /* Products */,
@@ -81,8 +98,14 @@
 		E0B61A2D1A84940B00F0A72C /* Lesson37-38Ex */ = {
 			isa = PBXGroup;
 			children = (
+				E0B61A591A84AD1800F0A72C /* RJMapAnnotation.h */,
+				E0B61A5A1A84AD1800F0A72C /* RJMapAnnotation.m */,
 				E0B61A321A84940B00F0A72C /* AppDelegate.h */,
 				E0B61A331A84940B00F0A72C /* AppDelegate.m */,
+				E0B61A561A849AC600F0A72C /* RJStudent.h */,
+				E0B61A571A849AC600F0A72C /* RJStudent.m */,
+				E0479B8A1A84DC89005C7092 /* RJStudentDetailsController.h */,
+				E0479B8B1A84DC89005C7092 /* RJStudentDetailsController.m */,
 				E0B61A351A84940B00F0A72C /* ViewController.h */,
 				E0B61A361A84940B00F0A72C /* ViewController.m */,
 				E0B61A381A84940B00F0A72C /* Main.storyboard */,
@@ -96,6 +119,8 @@
 		E0B61A2E1A84940B00F0A72C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E0B61A5C1A84C2DE00F0A72C /* female.png */,
+				E0B61A5D1A84C2DE00F0A72C /* male.png */,
 				E0B61A2F1A84940B00F0A72C /* Info.plist */,
 				E0B61A301A84940B00F0A72C /* main.m */,
 			);
@@ -200,8 +225,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0B61A3A1A84940B00F0A72C /* Main.storyboard in Resources */,
+				E0B61A5F1A84C2DE00F0A72C /* male.png in Resources */,
 				E0B61A3F1A84940B00F0A72C /* LaunchScreen.xib in Resources */,
 				E0B61A3C1A84940B00F0A72C /* Images.xcassets in Resources */,
+				E0B61A5E1A84C2DE00F0A72C /* female.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,8 +246,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0B61A5B1A84AD1800F0A72C /* RJMapAnnotation.m in Sources */,
 				E0B61A371A84940B00F0A72C /* ViewController.m in Sources */,
+				E0B61A581A849AC600F0A72C /* RJStudent.m in Sources */,
 				E0B61A341A84940B00F0A72C /* AppDelegate.m in Sources */,
+				E0479B8C1A84DC89005C7092 /* RJStudentDetailsController.m in Sources */,
 				E0B61A311A84940B00F0A72C /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,6 +444,7 @@
 				E0B61A501A84940B00F0A72C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E0B61A511A84940B00F0A72C /* Build configuration list for PBXNativeTarget "Lesson37-38ExTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +453,7 @@
 				E0B61A531A84940B00F0A72C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
