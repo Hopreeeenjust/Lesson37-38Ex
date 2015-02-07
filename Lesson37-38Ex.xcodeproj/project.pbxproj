@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E00886051A851F1700E00F27 /* Meeting.png in Resources */ = {isa = PBXBuildFile; fileRef = E00886041A851F1700E00F27 /* Meeting.png */; };
+		E00886071A85207500E00F27 /* Meeting2.png in Resources */ = {isa = PBXBuildFile; fileRef = E00886061A85207500E00F27 /* Meeting2.png */; };
+		E00886091A8520C200E00F27 /* Meeting3.png in Resources */ = {isa = PBXBuildFile; fileRef = E00886081A8520C200E00F27 /* Meeting3.png */; };
 		E0479B8C1A84DC89005C7092 /* RJStudentDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0479B8B1A84DC89005C7092 /* RJStudentDetailsController.m */; };
+		E0479B8F1A84E4AA005C7092 /* UIView+MKAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0479B8E1A84E4AA005C7092 /* UIView+MKAnnotationView.m */; };
+		E0479B921A85143A005C7092 /* RJMeetingAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E0479B911A85143A005C7092 /* RJMeetingAnnotation.m */; };
 		E0B61A311A84940B00F0A72C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B61A301A84940B00F0A72C /* main.m */; };
 		E0B61A341A84940B00F0A72C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B61A331A84940B00F0A72C /* AppDelegate.m */; };
 		E0B61A371A84940B00F0A72C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B61A361A84940B00F0A72C /* ViewController.m */; };
@@ -33,8 +38,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E00886041A851F1700E00F27 /* Meeting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Meeting.png; path = Images/Meeting.png; sourceTree = SOURCE_ROOT; };
+		E00886061A85207500E00F27 /* Meeting2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Meeting2.png; path = Images/Meeting2.png; sourceTree = SOURCE_ROOT; };
+		E00886081A8520C200E00F27 /* Meeting3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Meeting3.png; path = Images/Meeting3.png; sourceTree = SOURCE_ROOT; };
 		E0479B8A1A84DC89005C7092 /* RJStudentDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJStudentDetailsController.h; sourceTree = "<group>"; };
 		E0479B8B1A84DC89005C7092 /* RJStudentDetailsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJStudentDetailsController.m; sourceTree = "<group>"; };
+		E0479B8D1A84E4AA005C7092 /* UIView+MKAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MKAnnotationView.h"; sourceTree = "<group>"; };
+		E0479B8E1A84E4AA005C7092 /* UIView+MKAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MKAnnotationView.m"; sourceTree = "<group>"; };
+		E0479B901A85143A005C7092 /* RJMeetingAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJMeetingAnnotation.h; sourceTree = "<group>"; };
+		E0479B911A85143A005C7092 /* RJMeetingAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJMeetingAnnotation.m; sourceTree = "<group>"; };
 		E0B61A2B1A84940B00F0A72C /* Lesson37-38Ex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lesson37-38Ex.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0B61A2F1A84940B00F0A72C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0B61A301A84940B00F0A72C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -98,8 +110,12 @@
 		E0B61A2D1A84940B00F0A72C /* Lesson37-38Ex */ = {
 			isa = PBXGroup;
 			children = (
+				E0479B8D1A84E4AA005C7092 /* UIView+MKAnnotationView.h */,
+				E0479B8E1A84E4AA005C7092 /* UIView+MKAnnotationView.m */,
 				E0B61A591A84AD1800F0A72C /* RJMapAnnotation.h */,
 				E0B61A5A1A84AD1800F0A72C /* RJMapAnnotation.m */,
+				E0479B901A85143A005C7092 /* RJMeetingAnnotation.h */,
+				E0479B911A85143A005C7092 /* RJMeetingAnnotation.m */,
 				E0B61A321A84940B00F0A72C /* AppDelegate.h */,
 				E0B61A331A84940B00F0A72C /* AppDelegate.m */,
 				E0B61A561A849AC600F0A72C /* RJStudent.h */,
@@ -119,6 +135,9 @@
 		E0B61A2E1A84940B00F0A72C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E00886041A851F1700E00F27 /* Meeting.png */,
+				E00886061A85207500E00F27 /* Meeting2.png */,
+				E00886081A8520C200E00F27 /* Meeting3.png */,
 				E0B61A5C1A84C2DE00F0A72C /* female.png */,
 				E0B61A5D1A84C2DE00F0A72C /* male.png */,
 				E0B61A2F1A84940B00F0A72C /* Info.plist */,
@@ -224,9 +243,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E00886071A85207500E00F27 /* Meeting2.png in Resources */,
 				E0B61A3A1A84940B00F0A72C /* Main.storyboard in Resources */,
 				E0B61A5F1A84C2DE00F0A72C /* male.png in Resources */,
+				E00886091A8520C200E00F27 /* Meeting3.png in Resources */,
 				E0B61A3F1A84940B00F0A72C /* LaunchScreen.xib in Resources */,
+				E00886051A851F1700E00F27 /* Meeting.png in Resources */,
 				E0B61A3C1A84940B00F0A72C /* Images.xcassets in Resources */,
 				E0B61A5E1A84C2DE00F0A72C /* female.png in Resources */,
 			);
@@ -246,6 +268,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0479B921A85143A005C7092 /* RJMeetingAnnotation.m in Sources */,
+				E0479B8F1A84E4AA005C7092 /* UIView+MKAnnotationView.m in Sources */,
 				E0B61A5B1A84AD1800F0A72C /* RJMapAnnotation.m in Sources */,
 				E0B61A371A84940B00F0A72C /* ViewController.m in Sources */,
 				E0B61A581A849AC600F0A72C /* RJStudent.m in Sources */,
@@ -378,6 +402,7 @@
 				INFOPLIST_FILE = "Lesson37-38Ex/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -388,6 +413,7 @@
 				INFOPLIST_FILE = "Lesson37-38Ex/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

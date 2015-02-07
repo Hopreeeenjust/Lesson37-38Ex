@@ -13,7 +13,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *surname;
 @property (weak, nonatomic) IBOutlet UILabel *gender;
 @property (weak, nonatomic) IBOutlet UILabel *dateOfBirth;
-@property (weak, nonatomic) IBOutlet UILabel *Country;
-@property (weak, nonatomic) IBOutlet UILabel *City;
-@property (weak, nonatomic) IBOutlet UILabel *Address;
+@property (weak, nonatomic) IBOutlet UILabel *country;
+@property (weak, nonatomic) IBOutlet UILabel *city;
+@property (weak, nonatomic) IBOutlet UILabel *address;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
+
+@property (strong, nonatomic) NSString *nameInfo;
+@property (strong, nonatomic) NSString *surnameInfo;
+@property (strong, nonatomic) NSString *genderInfo;
+@property (strong, nonatomic) NSString *dateOfBirthInfo;
+
+-(IBAction)actionDoneButtonPressed:(UIBarButtonItem *)sender;
 @end

@@ -12,7 +12,8 @@
 
 @interface ViewController : UIViewController
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-
-- (IBAction)actionShowStudents:(UIBarButtonItem *)sender;
+@property (weak, nonatomic) IBOutlet UILabel *studentsIn5Km;
+@property (weak, nonatomic) IBOutlet UILabel *studentsIn10Km;
+@property (weak, nonatomic) IBOutlet UILabel *studentsIn15Km;
 @end
 

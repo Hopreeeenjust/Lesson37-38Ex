@@ -10,4 +10,18 @@
 
 @implementation RJStudentDetailsController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.name.text = self.nameInfo;
+    self.surname.text = self.surnameInfo;
+    self.gender.text = self.genderInfo;
+    self.dateOfBirth.text = self.dateOfBirthInfo;
+}
+
+#pragma mark - Actions
+
+- (IBAction)actionDoneButtonPressed:(UIBarButtonItem *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 @end
