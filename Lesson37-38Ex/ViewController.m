@@ -17,9 +17,12 @@
 @interface ViewController ()
 @property (strong, nonatomic) NSMutableArray *annotations;
 @property (strong, nonatomic) CLGeocoder *geoCoder;
+@property (strong, nonatomic) MKDirections *directions;
 @property (assign, nonatomic) CLLocationCoordinate2D center;
-
 @end
+
+BOOL studentsAreShown;
+BOOL distanceCirclesAreShown;
 
 @implementation ViewController
 
@@ -29,15 +32,19 @@
     [super viewDidLoad];
     CLLocationCoordinate2D center = {55.753744, 37.622637};
     self.center = center;
-    MKCoordinateRegion regionToShow = MKCoordinateRegionMakeWithDistance(center, 40000, 40000);
+    MKCoordinateRegion regionToShow = MKCoordinateRegionMakeWithDistance(center, 10000, 10000);
     [self.mapView setRegion:regionToShow];
+    studentsAreShown = NO;
+    distanceCirclesAreShown = NO;
+    self.distanceView.backgroundColor = [[UIColor greenColor] colorWithAlphaComponent:0.3f];
     
     UIBarButtonItem *addStudentsButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(actionAddStudents:)];
     UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     UIBarButtonItem *showAllStudentsButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(actionShowStudents:)];
     UIBarButtonItem *meetingButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Meeting3.png"] style:UIBarButtonItemStylePlain target:self action:@selector(actionAddMeetingPoint:)];
+    UIBarButtonItem *moveStudentsToMeetingButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(actionAddRoutsToMeetingPoint:)];
     
-    NSArray *buttonsArray = @[addStudentsButton, fixedSpace, showAllStudentsButton, fixedSpace, meetingButton];
+    NSArray *buttonsArray = @[addStudentsButton, fixedSpace, showAllStudentsButton, fixedSpace, meetingButton,fixedSpace,moveStudentsToMeetingButton];
     self.navigationItem.rightBarButtonItems = buttonsArray;
     
     double deltaLatitude = 0.15f;
@@ -83,15 +90,17 @@
     if ([self.geoCoder isGeocoding]) {
         [self.geoCoder cancelGeocode];
     }
-//    if ([self.directions isCalculating]) {
-//        [self.directions cancel];
-//    }
+    if ([self.directions isCalculating]) {
+        [self.directions cancel];
+    }
 }
 
 #pragma mark - Actions
 
 - (void)actionAddStudents:(UIBarButtonItem *)sender {
     [self.mapView addAnnotations:self.annotations];
+    studentsAreShown = YES;
+    [self showStudentsInDistanceRange];
 }
 
 - (void)actionDescription:(UIButton *)sender {
@@ -114,14 +123,21 @@
 
 - (void)actionShowStudents:(UIBarButtonItem *)sender {
     [self.mapView showAnnotations:self.annotations animated:YES];
+    studentsAreShown = YES;
+    [self showStudentsInDistanceRange];
 }
 
 - (void)actionAddMeetingPoint:(UIBarButtonItem *)sender {
     RJMeetingAnnotation *annotation = [RJMeetingAnnotation new];
     annotation.coordinate = self.center;
     annotation.title = @"Meeting is here";
-    
     [self.mapView addAnnotation:annotation];
+}
+
+- (void)actionAddRoutsToMeetingPoint:(UIBarButtonItem *)sender {
+    if (studentsAreShown && distanceCirclesAreShown) {
+        [self drawRoutesFromStudentsToMeetingPoint];
+    }
 }
 
 #pragma mark - MKMapViewDelegate
@@ -164,6 +180,8 @@
         MKCircle *circle2 = [MKCircle circleWithCenterCoordinate:self.center radius:10000];
         MKCircle *circle3 = [MKCircle circleWithCenterCoordinate:self.center radius:5000];
         [self.mapView addOverlays:@[circle1, circle2, circle3] level:MKOverlayLevelAboveRoads];
+        distanceCirclesAreShown = YES;
+        [self showStudentsInDistanceRange];
         return annotationView;
     }
     return nil;
@@ -179,9 +197,11 @@
         MKCircle *circle2 = [MKCircle circleWithCenterCoordinate:self.center radius:10000];
         MKCircle *circle3 = [MKCircle circleWithCenterCoordinate:self.center radius:5000];
         [self.mapView addOverlays:@[circle1, circle2, circle3] level:MKOverlayLevelAboveRoads];
-        CLLocationCoordinate2D location = view.annotation.coordinate;
-        MKMapPoint point = MKMapPointForCoordinate(location);
-        NSLog(@"\nlocation = {%f, %f}\npoint = %@", location.latitude, location.longitude, MKStringFromMapPoint(point));
+        [self showStudentsInDistanceRange];
+        if (studentsAreShown && distanceCirclesAreShown) {
+            [self drawRoutesFromStudentsToMeetingPoint];
+        }
+        view.dragState = MKAnnotationViewDragStateNone;
     }
 }
 
@@ -189,7 +209,7 @@
     if ([overlay isKindOfClass:[MKPolyline class]]) {
         MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc] initWithOverlay:overlay];
         renderer.lineWidth = 2.f;
-        renderer.strokeColor = [UIColor redColor];
+        renderer.strokeColor = [self randomColor];
         return renderer;
     }
     if ([overlay isKindOfClass:[MKCircle class]]) {
@@ -201,11 +221,6 @@
     }
     return nil;
 }
-
-
-//        UIButton *directionButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
-//        [directionButton addTarget:self action:@selector(actionDirection:) forControlEvents:UIControlEventTouchUpInside];
-//        pin.leftCalloutAccessoryView = directionButton;
 
 #pragma mark - UITableViewDelegate 
 
@@ -238,5 +253,94 @@
     }];
 }
 
+- (void)showStudentsInDistanceRange {
+    NSInteger in5kDistance = 0;
+    NSInteger in10kDistance = 0;
+    NSInteger in15kDistance = 0;
+    CLLocationCoordinate2D centerCoord = self.center;
+    CLLocation *centerLocation = [[CLLocation alloc] initWithLatitude:centerCoord.latitude longitude:centerCoord.longitude];
+    for (RJMapAnnotation *annotation in self.annotations) {
+        CLLocationCoordinate2D coordinate = annotation.coordinate;
+        CLLocation *location = [[CLLocation alloc] initWithLatitude:coordinate.latitude longitude:coordinate.longitude];
+        CLLocationDistance dist = [location distanceFromLocation:centerLocation];
+        if (dist <= 5000) {
+            in5kDistance++;
+        } else if (dist <= 10000) {
+            in10kDistance++;
+        } else if (dist <= 15000) {
+            in15kDistance++;
+        }
+    }
+    if (studentsAreShown && distanceCirclesAreShown) {
+        self.studentsIn5Km.text = [NSString stringWithFormat:@"%ld", in5kDistance];
+        self.studentsIn10Km.text = [NSString stringWithFormat:@"%ld", in10kDistance];
+        self.studentsIn15Km.text = [NSString stringWithFormat:@"%ld", in15kDistance];
+    }
+}
+
+- (void)drawRoutesFromStudentsToMeetingPoint {
+    NSInteger studentsCount = 0;
+    for (RJMapAnnotation *annotation in self.annotations) {
+        if (!annotation) {
+            return;
+        }
+        if ([self.directions isCalculating]) {
+            [self.directions cancel];
+        }
+        BOOL willTakePartInMeeting = NO;
+        CLLocationCoordinate2D centerCoord = self.center;
+        CLLocation *centerLocation = [[CLLocation alloc] initWithLatitude:centerCoord.latitude longitude:centerCoord.longitude];
+        CLLocationCoordinate2D coordinate = annotation.coordinate;
+        CLLocation *location = [[CLLocation alloc] initWithLatitude:coordinate.latitude longitude:coordinate.longitude];
+        CLLocationDistance dist = [location distanceFromLocation:centerLocation];
+        if (dist <= 5000) {
+            willTakePartInMeeting = (int)(arc4random_uniform(10 * 1000) / 1000);    //90% probability
+        } else if (dist <= 10000) {
+            willTakePartInMeeting = (int)(arc4random_uniform(2.5f * 1000) / 1000);  //60% probability
+        } else if (dist <= 15000) {
+            willTakePartInMeeting = (int)(arc4random_uniform(1.5f * 1000) / 1000);  //33% probability
+        } else {
+            willTakePartInMeeting = (int)(arc4random_uniform(1.5f * 1000) / 1000);  //9% probability
+        }
+        if (willTakePartInMeeting) {
+            MKDirectionsRequest *request = [MKDirectionsRequest new];
+            MKPlacemark *sourcePlacemark = [[MKPlacemark alloc] initWithCoordinate:self.center addressDictionary:nil];
+            request.source = [[MKMapItem alloc] initWithPlacemark:sourcePlacemark];
+            MKPlacemark *destinationPlacemark = [[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:nil];
+            MKMapItem *destination = [[MKMapItem alloc] initWithPlacemark:destinationPlacemark];
+            request.destination = destination;
+            request.transportType = MKDirectionsTransportTypeAny;
+            request.requestsAlternateRoutes = NO;
+            
+            self.directions = [[MKDirections alloc] initWithRequest:request];
+            [self.directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
+                if (error) {
+                    [[[UIAlertView alloc] initWithTitle:@"Error"
+                                                message:[error localizedDescription]
+                                               delegate:nil
+                                      cancelButtonTitle:@"OK"
+                                      otherButtonTitles:nil] show];
+                } else if ([response.routes count] == 0) {
+                } else {
+                    NSMutableArray *array  = [NSMutableArray array];
+                    for (MKRoute *route in response.routes) {
+                        [array addObject:route.polyline];
+                    }
+                    [self.mapView addOverlays:array level:MKOverlayLevelAboveRoads];
+                }
+            }];
+            studentsCount++;
+        }
+    }
+    self.studentsWIllTakePart.text = [NSString stringWithFormat:@"%ld", studentsCount];
+}
+
+- (UIColor *)randomColor {
+    CGFloat red = (float)arc4random_uniform(256) / 255;
+    CGFloat green = (float)arc4random_uniform(256) / 255;
+    CGFloat blue = (float)arc4random_uniform(256) / 255;
+    UIColor *color = [UIColor colorWithRed:red green:green blue:blue alpha:1.0f];
+    return color;
+}
 
 @end

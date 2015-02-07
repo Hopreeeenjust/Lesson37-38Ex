@@ -15,5 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *studentsIn5Km;
 @property (weak, nonatomic) IBOutlet UILabel *studentsIn10Km;
 @property (weak, nonatomic) IBOutlet UILabel *studentsIn15Km;
+@property (weak, nonatomic) IBOutlet UILabel *studentsWIllTakePart;
+@property (weak, nonatomic) IBOutlet UIView *distanceView;
 @end
 
